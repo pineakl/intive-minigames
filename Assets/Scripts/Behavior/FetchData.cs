@@ -52,7 +52,7 @@ public class FetchData : MonoBehaviour
 
             for (int i = 0; i < picked.Count; i++)
             {
-                picked[i].GetComponent<Animator>().CrossFade("standing", 0);
+                if (picked[i].GetComponent<Animator>()) picked[i].GetComponent<Animator>().CrossFade("standing", 0);
                 picked[i].SetText(_questions.data[0].answers[i].answer);
                 if (_questions.data[0].answer_correct.id == _questions.data[0].answers[i].id) picked[i].isTrue = true;
             }
