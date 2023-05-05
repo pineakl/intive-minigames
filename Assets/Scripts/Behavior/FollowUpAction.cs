@@ -24,7 +24,7 @@ public class FollowUpAction : MonoBehaviour
                 if (_animator)
                 {
                     _animator.CrossFade("shoot", 0f);
-                    transform.DOMoveX(_triggerInput.ClickTarget.x, 0.8f);
+                    transform.DOMoveX(_triggerInput.ClickTarget.x, 0.5f);
 
                     Invoke("ResetState", 1f);
                 }

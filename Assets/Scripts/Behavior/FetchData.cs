@@ -20,7 +20,7 @@ public class FetchData : MonoBehaviour
     {
         _random = new System.Random();
 
-        Invoke("Reload", 1.5f);
+        Invoke("Reload", 0.5f);
     }
 
     private void Reload()
