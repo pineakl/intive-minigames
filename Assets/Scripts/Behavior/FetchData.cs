@@ -6,6 +6,7 @@ using TMPro;
 
 public class FetchData : MonoBehaviour
 {
+
     [SerializeField] private string _server;
     [SerializeField] private TextAsset _questionJSON;
     [SerializeField] private TextMeshProUGUI _textQuestion;
@@ -18,6 +19,7 @@ public class FetchData : MonoBehaviour
 
     private void Start() 
     {
+
         _random = new System.Random();
 
         Invoke("Reload", 0.5f);
