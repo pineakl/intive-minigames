@@ -11,6 +11,7 @@ public class Shooting : MonoBehaviour
 
     public bool OnShoot { get; private set; }
     public Vector3 ClickTarget { get; private set; }
+    public Transform ClickedObject { get; private set; }
 
     void Start()
     {
@@ -31,6 +32,7 @@ public class Shooting : MonoBehaviour
 
                 //  Notify shoot trigger
                 OnShoot = true;
+                ClickedObject = hit.transform;
                 ClickTarget = hit.transform.position;
 
 
@@ -41,14 +43,14 @@ public class Shooting : MonoBehaviour
                 
                 if (_target.isTrue)
                 {
-                    StartCoroutine(showResult("Benar", Color.green));
+                    ShowResult("Benar", Color.green);
                 }
                 else
                 {
-                    StartCoroutine(showResult("Salah", Color.red));
+                    ShowResult("Salah", Color.red);
                 }
 
-                Invoke("Reload", 3f);
+                //Invoke("Reload", 3f);
             }
         }
     }
@@ -64,12 +66,10 @@ public class Shooting : MonoBehaviour
         _ready = true;
     }
 
-    private IEnumerator showResult(string result, Color color)
+    private void ShowResult(string result, Color color)
     {
         _textResult.gameObject.SetActive(true);
         _textResult.color = color;
         _textResult.text = result;
-        yield return new WaitForSeconds(3f);
-        _textResult.gameObject.SetActive(false);
     }
 }
