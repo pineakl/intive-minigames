@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ResolutionMaintainer : MonoBehaviour
 {
@@ -23,5 +24,9 @@ public class ResolutionMaintainer : MonoBehaviour
     public void ExitMinigame()
     {
         Screen.SetResolution(_savedWidth, _savedHeight, _fsMode);
+
+        //  Script Ganti Scene
+        
+        //  SceneManager.LoadScene("Nama Scene", LoadSceneMode.Single);
     }
 }
