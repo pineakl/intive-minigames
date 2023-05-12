@@ -49,6 +49,7 @@ public class Shooting : MonoBehaviour
                 {
                     ShowResult("Salah", Color.red);
                 }
+                SequenceManager.Instance.NextQuestion();
 
                 //Invoke("Reload", 3f);
             }

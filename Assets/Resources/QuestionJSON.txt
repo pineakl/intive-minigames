@@ -27,6 +27,60 @@
                 "id": 3,
                 "answer": "Ya"
             }
+        },
+        {
+            "id": 2,
+            "master_value": "PDP",
+            "question": "Menerima hadiah mantan pacar, Apakah termasuk tindakan korupsi?",
+            "answers": [
+                {
+                    "id": 3,
+                    "answer": "Ya"
+                },
+                {
+                    "id": 4,
+                    "answer": "Tidak"
+                },
+                {
+                    "id": 5,
+                    "answer": "Semua Benar"
+                },
+                {
+                    "id": 6,
+                    "answer": "Semua Salah"
+                }
+            ],
+            "answer_correct": {
+                "id": 4,
+                "answer": "Tidak"
+            }
+        },
+        {
+            "id": 2,
+            "master_value": "PDP",
+            "question": "memberi hadiah kepada calon konsumen, Apakah termasuk ilegal?",
+            "answers": [
+                {
+                    "id": 3,
+                    "answer": "Ya"
+                },
+                {
+                    "id": 4,
+                    "answer": "Tidak"
+                },
+                {
+                    "id": 5,
+                    "answer": "Semua Benar"
+                },
+                {
+                    "id": 6,
+                    "answer": "Semua Salah"
+                }
+            ],
+            "answer_correct": {
+                "id": 4,
+                "answer": "Tidak"
+            }
         }
     ]
 }

@@ -1,19 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Networking;
 using TMPro;
 
 public class FetchData : MonoBehaviour
 {
-
-    [SerializeField] private string _server;
-    [SerializeField] private TextAsset _questionJSON;
     [SerializeField] private TextMeshProUGUI _textQuestion;
     [SerializeField] private TargetObject[] _targets;
     List<TargetObject> _tempoObjects;
-
-    private Structures.Question _questions;
 
     private System.Random _random;
 
@@ -27,13 +21,13 @@ public class FetchData : MonoBehaviour
 
     private void Reload()
     {
-        _questions = null;
-        loadQuestion();
-        if (_questions != null)
-        {
-            _textQuestion.text = _questions.data[0].question;
+        Structures.QuestionData questionObj = SequenceManager.Instance.GetQuestion();
 
-            int answers = _questions.data[0].answers.Length;
+        if (questionObj != null)
+        {
+            _textQuestion.text = questionObj.question;
+
+            int answers = questionObj.answers.Length;
             
             _tempoObjects = new List<TargetObject>();
             for (int i = 0; i < _targets.Length; i++)
@@ -55,39 +49,13 @@ public class FetchData : MonoBehaviour
             for (int i = 0; i < picked.Count; i++)
             {
                 if (picked[i].GetComponent<Animator>()) picked[i].GetComponent<Animator>().CrossFade("standing", 0);
-                picked[i].SetText(_questions.data[0].answers[i].answer);
-                if (_questions.data[0].answer_correct.id == _questions.data[0].answers[i].id) picked[i].isTrue = true;
+                picked[i].SetText(questionObj.answers[i].answer);
+                if (questionObj.answer_correct.id == questionObj.answers[i].id) picked[i].isTrue = true;
             }
         }
-    }
-
-    private void loadQuestion()
-    {
-        _questions = JsonUtility.FromJson<Structures.Question>(_questionJSON.text);
-    }
-
-    private IEnumerator fetchQuestion(string url, string token)
-    {
-        using (UnityWebRequest webRequest = UnityWebRequest.Get(_server + url))
+        else
         {
-            webRequest.SetRequestHeader("Authorization", "Bearer " + token);
-            yield return webRequest.SendWebRequest();
-
-            switch (webRequest.result)
-            {
-                case UnityWebRequest.Result.ConnectionError:
-                case UnityWebRequest.Result.DataProcessingError:
-                    Debug.LogError("Error: " + webRequest.error);
-                    break;
-                case UnityWebRequest.Result.ProtocolError:
-                    Debug.LogError("HTTP Error: " + webRequest.error);
-                    break;
-                case UnityWebRequest.Result.Success:
-                    _questions = JsonUtility.FromJson<Structures.Question>(webRequest.downloadHandler.text);
-                    break;
-            }
-
-            webRequest.Dispose();
+            Invoke("Reload", 0.5f);
         }
     }
 }
