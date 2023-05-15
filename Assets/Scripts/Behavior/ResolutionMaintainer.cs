@@ -8,6 +8,8 @@ public class ResolutionMaintainer : MonoBehaviour
     private const int DESIRED_WIDTH = 1366;
     private const int DESIRED_HEIGHT = 768;
 
+    [SerializeField] private string _homeScene;
+
     private int _savedWidth;
     private int _savedHeight;
     private FullScreenMode _fsMode;
@@ -25,8 +27,12 @@ public class ResolutionMaintainer : MonoBehaviour
     {
         Screen.SetResolution(_savedWidth, _savedHeight, _fsMode);
 
-        //  Script Ganti Scene
-        
-        //  SceneManager.LoadScene("Nama Scene", LoadSceneMode.Single);
+        if (_homeScene != null)
+        {
+            if (_homeScene != string.Empty)
+            {
+                SceneManager.LoadScene(_homeScene, LoadSceneMode.Single);
+            }
+        }
     }
 }

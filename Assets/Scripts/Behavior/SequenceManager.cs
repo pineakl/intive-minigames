@@ -10,6 +10,8 @@ public class SequenceManager : MonoBehaviour
     [SerializeField] private TextAsset _questionJSON;
     [SerializeField] private List<string> _gameScenes;
 
+    [SerializeField] private string _homeScene;
+
     private Structures.Question _questions;
     private int _currentQuestionId;
 
@@ -89,5 +91,16 @@ public class SequenceManager : MonoBehaviour
     private void InvokeNextScene()
     {
         SceneManager.LoadScene(_gameScenes[_currentQuestionId], LoadSceneMode.Single);
+    }
+
+    public void ExitMinigame()
+    {
+        if (_homeScene != null)
+        {
+            if (_homeScene != string.Empty)
+            {
+                SceneManager.LoadScene(_homeScene, LoadSceneMode.Single);
+            }
+        }
     }
 }
