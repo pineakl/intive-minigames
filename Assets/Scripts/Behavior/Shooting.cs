@@ -9,6 +9,7 @@ public class Shooting : MonoBehaviour
     private Ray _ray;
     private bool _ready;
 
+    private bool _markOnShoot;
     public bool OnShoot { get; private set; }
     public Vector3 ClickTarget { get; private set; }
     public Transform ClickedObject { get; private set; }
@@ -18,7 +19,16 @@ public class Shooting : MonoBehaviour
         _ready = true;
     }
 
-    private void FixedUpdate()
+    private void FixedUpdate() 
+    {
+        if (_markOnShoot)
+        {
+            _markOnShoot = false;
+            OnShoot = true;
+        }
+    }
+
+    private void Update()
     {
         if (Input.GetMouseButtonDown(0) && _ready)
         {
@@ -31,16 +41,18 @@ public class Shooting : MonoBehaviour
                 _ready = false;
 
                 //  Notify shoot trigger
-                OnShoot = true;
+                _markOnShoot = true;
                 ClickedObject = hit.transform;
                 ClickTarget = hit.transform.position;
-
 
                 //  Determine right answers
                 TargetObject _target = hit.collider.gameObject.GetComponent<TargetObject>();
 
-                if (_target.GetComponent<Animator>()) _target.GetComponent<Animator>().CrossFade("falling", 0);
-                
+                if (_target.GetComponent<Animator>())
+                {
+                    _target.GetComponent<Animator>().CrossFade("falling", 0);
+                }
+
                 if (_target.isTrue)
                 {
                     ShowResult("Benar", Color.green);
@@ -59,12 +71,6 @@ public class Shooting : MonoBehaviour
     private void LateUpdate() 
     {
         if (OnShoot) OnShoot = false;
-        ClickTarget = Vector3.zero;
-    }
-
-    private void Reload()
-    {
-        _ready = true;
     }
 
     private void ShowResult(string result, Color color)

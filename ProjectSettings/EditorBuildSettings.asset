@@ -18,6 +18,9 @@ EditorBuildSettings:
     path: Assets/Game04-Boat/game04-fishingboat.unity
     guid: 85bb645cb4fe702aea2f652b649106ef
   - enabled: 1
+    path: Assets/Game05-Runner/game05-runnerman.unity
+    guid: 8dcb0ea1c0f01b174b27a9a0a69b8461
+  - enabled: 1
     path: Assets/HomeScene.unity
     guid: c1595406b017b3f2e882c84ade656836
   m_configObjects: {}

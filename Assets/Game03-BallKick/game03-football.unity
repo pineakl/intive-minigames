@@ -775,6 +775,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1773040954897486611, guid: 0e1d991e91e2a470cba8e0fde98f1a7a, type: 3}
+      propertyPath: _homeScene
+      value: Halls
+      objectReference: {fileID: 0}
+    - target: {fileID: 1773040954897486611, guid: 0e1d991e91e2a470cba8e0fde98f1a7a, type: 3}
+      propertyPath: _autoExitOnComplete
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8648882530253777709, guid: 0e1d991e91e2a470cba8e0fde98f1a7a, type: 3}
       propertyPath: m_Name
       value: GameManager
@@ -918,7 +926,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 769585498}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

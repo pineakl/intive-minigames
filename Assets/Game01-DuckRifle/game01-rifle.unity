@@ -1195,7 +1195,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1024273748}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1641,22 +1641,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1773040954897486611, guid: 0e1d991e91e2a470cba8e0fde98f1a7a, type: 3}
-      propertyPath: _gameScenes.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1773040954897486611, guid: 0e1d991e91e2a470cba8e0fde98f1a7a, type: 3}
-      propertyPath: _gameScenes.Array.data[1]
-      value: game03-football
-      objectReference: {fileID: 0}
-    - target: {fileID: 1773040954897486611, guid: 0e1d991e91e2a470cba8e0fde98f1a7a, type: 3}
-      propertyPath: _gameScenes.Array.data[2]
-      value: game04-fishingboat
-      objectReference: {fileID: 0}
-    - target: {fileID: 1773040954897486611, guid: 0e1d991e91e2a470cba8e0fde98f1a7a, type: 3}
-      propertyPath: _gameScenes.Array.data[3]
-      value: game04-fishingboat
-      objectReference: {fileID: 0}
     - target: {fileID: 8648882530253777709, guid: 0e1d991e91e2a470cba8e0fde98f1a7a, type: 3}
       propertyPath: m_Name
       value: GameManager

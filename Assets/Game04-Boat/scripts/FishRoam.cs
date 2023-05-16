@@ -23,8 +23,8 @@ public class FishRoam : MonoBehaviour
     {
         _current = transform.position;
         _destination = new Vector3(
-            Random.Range(-7f, 7f),
-            Random.Range(0f, -3f),
+            Random.Range(transform.position.x - 1, transform.position.x + 1),
+            Random.Range(transform.position.y - 1, transform.position.y + 1),
             transform.position.z
         );
 

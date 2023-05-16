@@ -10,7 +10,8 @@ public class SequenceManager : MonoBehaviour
     [SerializeField] private TextAsset _questionJSON;
     [SerializeField] private List<string> _gameScenes;
 
-    [SerializeField] private string _homeScene;
+    [SerializeField] private bool _autoExitOnComplete = true;
+    [SerializeField] private string _homeScene = "Halls";
 
     private Structures.Question _questions;
     private int _currentQuestionId;
@@ -84,7 +85,7 @@ public class SequenceManager : MonoBehaviour
         }
         else
         {
-            Destroy(this.gameObject);
+            if (_autoExitOnComplete) Invoke("ExitMinigame", 3f);
         }
     }
 
@@ -102,5 +103,6 @@ public class SequenceManager : MonoBehaviour
                 SceneManager.LoadScene(_homeScene, LoadSceneMode.Single);
             }
         }
+        Destroy(this.gameObject);
     }
 }
