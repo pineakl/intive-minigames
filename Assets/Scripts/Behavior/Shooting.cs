@@ -5,7 +5,8 @@ using TMPro;
 
 public class Shooting : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI _textResult;
+    [SerializeField] private Animator _resultAnimator;
+
     private Ray _ray;
     private bool _ready;
 
@@ -53,14 +54,8 @@ public class Shooting : MonoBehaviour
                     _target.GetComponent<Animator>().CrossFade("falling", 0);
                 }
 
-                if (_target.isTrue)
-                {
-                    ShowResult("Benar", Color.green);
-                }
-                else
-                {
-                    ShowResult("Salah", Color.red);
-                }
+                StartCoroutine(ShowResult(_target.isTrue));
+
                 SequenceManager.Instance.NextQuestion();
 
                 //Invoke("Reload", 3f);
@@ -73,10 +68,14 @@ public class Shooting : MonoBehaviour
         if (OnShoot) OnShoot = false;
     }
 
-    private void ShowResult(string result, Color color)
+    private IEnumerator ShowResult(bool isTrue)
     {
-        _textResult.gameObject.SetActive(true);
-        _textResult.color = color;
-        _textResult.text = result;
+        yield return new WaitForSeconds (1f);
+
+        if (_resultAnimator)
+        {
+            if (isTrue) _resultAnimator.CrossFade("result_right", 0f);
+            else _resultAnimator.CrossFade("result_wrong", 0f);
+        }
     }
 }

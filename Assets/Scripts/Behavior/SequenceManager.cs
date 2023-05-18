@@ -81,11 +81,11 @@ public class SequenceManager : MonoBehaviour
         _currentQuestionId++;
         if (_currentQuestionId < _gameScenes.Count)
         {
-            Invoke("InvokeNextScene", 2f);
+            Invoke("InvokeNextScene", 3.5f);
         }
         else
         {
-            if (_autoExitOnComplete) Invoke("ExitMinigame", 3f);
+            if (_autoExitOnComplete) Invoke("ExitMinigame", 5f);
         }
     }
 

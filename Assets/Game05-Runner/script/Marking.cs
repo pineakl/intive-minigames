@@ -5,7 +5,7 @@ using TMPro;
 
 public class Marking : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI _textResult;
+    [SerializeField] private Animator _resultAnimator;
     [SerializeField] private SpriteRenderer _runnerSprite;
 
     private Ray _ray;
@@ -67,24 +67,21 @@ public class Marking : MonoBehaviour
 
     private void CompareResult(TargetObject targetObj)
     {
-        if (targetObj.isTrue)
-        {
-            ShowResult("Benar", Color.green);
-        }
-        else
-        {
-            ShowResult("Salah", Color.red);
-        }
+        StartCoroutine(ShowResult(targetObj.isTrue));
 
         targetObj.gameObject.SetActive(false);
 
         SequenceManager.Instance.NextQuestion();
     }
     
-    private void ShowResult(string result, Color color)
+    private IEnumerator ShowResult(bool isTrue)
     {
-        _textResult.gameObject.SetActive(true);
-        _textResult.color = color;
-        _textResult.text = result;
+        yield return new WaitForSeconds (1f);
+
+        if (_resultAnimator)
+        {
+            if (isTrue) _resultAnimator.CrossFade("result_right", 0f);
+            else _resultAnimator.CrossFade("result_wrong", 0f);
+        }
     }
 }
