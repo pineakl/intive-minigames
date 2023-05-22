@@ -12,6 +12,8 @@ public class FishRoam : MonoBehaviour
     private Vector3 _destination;
     private bool _isHook;
 
+    private bool _tweenKilled;
+
     [SerializeField] private SpriteRenderer _spriteRenderer;
 
     void Start()
@@ -21,18 +23,21 @@ public class FishRoam : MonoBehaviour
 
     private void StartTween()
     {
-        _current = transform.position;
-        _destination = new Vector3(
-            Random.Range(transform.position.x - 1, transform.position.x + 1),
-            Random.Range(transform.position.y - 1, transform.position.y + 1),
-            transform.position.z
-        );
+        if (!_tweenKilled)
+        {
+            _current = transform.position;
+            _destination = new Vector3(
+                Random.Range(transform.position.x - 1, transform.position.x + 1),
+                Random.Range(transform.position.y - 1, transform.position.y + 1),
+                transform.position.z
+            );
 
-        if (_spriteRenderer) _spriteRenderer.flipX = (_destination.x - _current.x < 0);
-        float distance = (_destination - _current).magnitude;
-        transform.DOMove(_destination, 10f * distance);
+            if (_spriteRenderer) _spriteRenderer.flipX = (_destination.x - _current.x < 0);
+            float distance = (_destination - _current).magnitude;
+            transform.DOMove(_destination, 10f * distance);
 
-        Invoke("StartTween", 10f * distance);
+            Invoke("StartTween", 10f * distance);
+        }
     }
 
     private void Update() 
@@ -42,6 +47,7 @@ public class FishRoam : MonoBehaviour
             if (_triggerInput.OnShoot)
             {
                 DOTween.Kill(transform);
+                _tweenKilled = true;
                 if (transform == _triggerInput.ClickedObject)
                 {
                     CancelInvoke("StartTween");
