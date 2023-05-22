@@ -36,6 +36,13 @@ public class HookFollowUp : MonoBehaviour
 
     private void Pull()
     {
+        DOTween.Kill(transform);
         transform.DOMove(_initPos + Vector3.down * 1.5f, 3f);
+        Invoke("KillTween" , 1f);
+    }
+
+    private void KillTween()
+    {
+        DOTween.Kill(transform);
     }
 }

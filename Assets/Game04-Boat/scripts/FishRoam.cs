@@ -41,9 +41,9 @@ public class FishRoam : MonoBehaviour
         {
             if (_triggerInput.OnShoot)
             {
+                DOTween.Kill(transform);
                 if (transform == _triggerInput.ClickedObject)
                 {
-                    transform.DOKill();
                     CancelInvoke("StartTween");
                     Invoke("HookThis", _hook.DiveTime);
                 }
