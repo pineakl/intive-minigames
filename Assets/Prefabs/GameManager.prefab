@@ -50,6 +50,5 @@ MonoBehaviour:
   - game01-rifle
   - game03-football
   - game04-fishingboat
-  - game05-runnerman
   _autoExitOnComplete: 1
   _homeScene: Halls

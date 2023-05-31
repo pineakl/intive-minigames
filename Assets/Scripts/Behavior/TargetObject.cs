@@ -9,13 +9,41 @@ public class TargetObject : MonoBehaviour
     [SerializeField] private TextMeshPro _labelLetter;
     [SerializeField] private TextMeshPro _text;
     [SerializeField] private TextMeshProUGUI _textUI;
-    
+
+    [Header("2 choice properties")]
+    [SerializeField] private bool _isTrueFalseOnly = false;
+    [SerializeField] private SpriteRenderer _panel;
+    [SerializeField] private Color _yesPanelColor = Color.white;
+    [SerializeField] private Color _yesTextColor = Color.white;
+    [SerializeField] private Color _noPanelColor = Color.white;
+    [SerializeField] private Color _noTextColor = Color.white;
+
     [HideInInspector] public bool isTrue;
 
     public void SetText(string text)
     {
-        if (_labelLetter) _labelLetter.text = _letter;
-
+        if (_labelLetter)
+        {
+            if (_isTrueFalseOnly)
+            {
+                _labelLetter.text = text;
+                if (text == "Ya")
+                {
+                    _labelLetter.color = _yesTextColor;
+                    _panel.color = _yesPanelColor;
+                }
+                else
+                {
+                    _labelLetter.color = _noTextColor;
+                    _panel.color = _noPanelColor;
+                }
+            }
+            else
+            {
+                _labelLetter.text = _letter;
+            }
+        }
+        
         if (_text) _text.text = _letter + ". " + text;
         if (_textUI) _textUI.text = _letter + ". " + text;
     }
