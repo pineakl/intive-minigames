@@ -44,13 +44,18 @@ public class SequenceManager : MonoBehaviour
     private void LoadQuestion()
     {
         _questions = JsonUtility.FromJson<Structures.Question>(_questionJSON.text);
+
+        StartCoroutine(fetchQuestion("https://sandbox.tamconnect.com/api/game-question"));
     }
 
-    private IEnumerator fetchQuestion(string url, string token)
+    private IEnumerator fetchQuestion(string url)
     {
-        using (UnityWebRequest webRequest = UnityWebRequest.Get(_server + url))
+        WWWForm form = new();
+        form.AddField("sub_master_value_id", 2);
+        form.AddField("ticket", "996D73D8");
+
+        using (UnityWebRequest webRequest = UnityWebRequest.Post(url, form))
         {
-            webRequest.SetRequestHeader("Authorization", "Bearer " + token);
             yield return webRequest.SendWebRequest();
 
             switch (webRequest.result)
@@ -63,7 +68,8 @@ public class SequenceManager : MonoBehaviour
                     Debug.LogError("HTTP Error: " + webRequest.error);
                     break;
                 case UnityWebRequest.Result.Success:
-                    _questions = JsonUtility.FromJson<Structures.Question>(webRequest.downloadHandler.text);
+                    //_questions = JsonUtility.FromJson<Structures.Question>(webRequest.downloadHandler.text);
+                    Debug.Log(webRequest.downloadHandler.text);
                     break;
             }
 
