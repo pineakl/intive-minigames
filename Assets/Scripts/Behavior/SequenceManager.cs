@@ -15,6 +15,9 @@ public class SequenceManager : MonoBehaviour
 
     private Structures.Question _questions;
     private int _currentQuestionId;
+    private System.Random _random;
+    
+    [HideInInspector] public int CurrentSceneId = 0;
 
     private static SequenceManager instance;
 
@@ -33,6 +36,8 @@ public class SequenceManager : MonoBehaviour
 
     private void Start() 
     {
+        _random = new System.Random();
+
         LoadQuestion();
     }
 
@@ -43,18 +48,18 @@ public class SequenceManager : MonoBehaviour
 
     private void LoadQuestion()
     {
-        _questions = JsonUtility.FromJson<Structures.Question>(_questionJSON.text);
+        //_questions = JsonUtility.FromJson<Structures.Question>(_questionJSON.text);
 
-        StartCoroutine(fetchQuestion("https://sandbox.tamconnect.com/api/game-question"));
+        StartCoroutine(fetchQuestion());
     }
 
-    private IEnumerator fetchQuestion(string url)
+    private IEnumerator fetchQuestion()
     {
         WWWForm form = new();
         form.AddField("sub_master_value_id", 2);
         form.AddField("ticket", "996D73D8");
 
-        using (UnityWebRequest webRequest = UnityWebRequest.Post(url, form))
+        using (UnityWebRequest webRequest = UnityWebRequest.Post(_server + "/api/game-question", form))
         {
             yield return webRequest.SendWebRequest();
 
@@ -68,7 +73,7 @@ public class SequenceManager : MonoBehaviour
                     Debug.LogError("HTTP Error: " + webRequest.error);
                     break;
                 case UnityWebRequest.Result.Success:
-                    //_questions = JsonUtility.FromJson<Structures.Question>(webRequest.downloadHandler.text);
+                    _questions = JsonUtility.FromJson<Structures.Question>(webRequest.downloadHandler.text);
                     Debug.Log(webRequest.downloadHandler.text);
                     break;
             }
@@ -85,7 +90,7 @@ public class SequenceManager : MonoBehaviour
     public void NextQuestion()
     {
         _currentQuestionId++;
-        if (_currentQuestionId < _gameScenes.Count)
+        if (_currentQuestionId < _questions.data.Length)
         {
             Invoke("InvokeNextScene", 3.5f);
         }
@@ -97,7 +102,14 @@ public class SequenceManager : MonoBehaviour
 
     private void InvokeNextScene()
     {
-        SceneManager.LoadScene(_gameScenes[_currentQuestionId], LoadSceneMode.Single);
+        int nextScene = CurrentSceneId;
+        while (nextScene == CurrentSceneId)
+        {
+            nextScene = _random.Next(0, _gameScenes.Count);
+        }
+
+        CurrentSceneId = nextScene;
+        SceneManager.LoadScene(_gameScenes[nextScene], LoadSceneMode.Single);
     }
 
     public void ExitMinigame()

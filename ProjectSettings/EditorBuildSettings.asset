@@ -8,7 +8,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Game01-DuckRifle/game01-rifle.unity
     guid: 7c696b53fa71f2370bbccdfb564cc744
-  - enabled: 0
+  - enabled: 1
     path: Assets/Game02-WhackAMole/game02-whackamole.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
@@ -20,6 +20,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Game05-Runner/game05-runnerman.unity
     guid: 8dcb0ea1c0f01b174b27a9a0a69b8461
+  - enabled: 1
+    path: Assets/Game06-ClawMachine/game06-clawmachine.unity
+    guid: b27b5fac0febea64797212ff0b0b5ac5
   - enabled: 1
     path: Assets/HomeScene.unity
     guid: c1595406b017b3f2e882c84ade656836

@@ -447,8 +447,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -15}
-  m_SizeDelta: {x: -40, y: -90}
+  m_AnchoredPosition: {x: 0, y: -21.5}
+  m_SizeDelta: {x: -60.000008, y: -133}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &317808213
 MonoBehaviour:
@@ -500,9 +500,9 @@ MonoBehaviour:
   m_fontSize: 24
   m_fontSizeBase: 24
   m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_enableAutoSizing: 1
+  m_fontSizeMin: 0.1
+  m_fontSizeMax: 24
   m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -759,7 +759,7 @@ MonoBehaviour:
   _lineTo: {fileID: 1074389747}
 --- !u!95 &377016113
 Animator:
-  serializedVersion: 4
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -776,7 +776,8 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &397374060
 GameObject:
   m_ObjectHideFlags: 0
@@ -1826,6 +1827,11 @@ MonoBehaviour:
   - {fileID: 876201082}
   - {fileID: 1392222817}
   - {fileID: 1651059153}
+  _answerUI:
+  - {fileID: 1675267466}
+  - {fileID: 1819518245}
+  - {fileID: 237265370}
+  - {fileID: 810019638}
 --- !u!4 &1208729323
 Transform:
   m_ObjectHideFlags: 0

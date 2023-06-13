@@ -44,11 +44,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9f36cf676e9b3c4ca3ff9f237ba23dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _server: 
+  _server: https://sandbox.tamconnect.com
   _questionJSON: {fileID: 4900000, guid: 3c41ae620425aed01afe0a7b0ca19e67, type: 3}
   _gameScenes:
   - game01-rifle
   - game03-football
   - game04-fishingboat
   _autoExitOnComplete: 1
-  _homeScene: Halls
+  _homeScene: HomeScene

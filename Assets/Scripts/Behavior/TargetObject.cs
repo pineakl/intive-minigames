@@ -5,7 +5,7 @@ using TMPro;
 
 public class TargetObject : MonoBehaviour
 {
-    [SerializeField] private string _letter;
+    //[SerializeField] private string _letter;
     [SerializeField] private TextMeshPro _labelLetter;
     [SerializeField] private TextMeshPro _text;
     [SerializeField] private TextMeshProUGUI _textUI;
@@ -20,7 +20,7 @@ public class TargetObject : MonoBehaviour
 
     [HideInInspector] public bool isTrue;
 
-    public void SetText(string text)
+    public void SetText(string letter, string text)
     {
         if (_labelLetter)
         {
@@ -40,11 +40,10 @@ public class TargetObject : MonoBehaviour
             }
             else
             {
-                _labelLetter.text = _letter;
+                _labelLetter.text = letter;
             }
         }
         
-        if (_text) _text.text = _letter + ". " + text;
-        if (_textUI) _textUI.text = _letter + ". " + text;
+        //if (_textUI) _textUI.text = letter + ". " + text;
     }
 }
