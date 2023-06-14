@@ -56,7 +56,7 @@ public class Shooting : MonoBehaviour
 
                 StartCoroutine(ShowResult(_target.isTrue));
 
-                SequenceManager.Instance.NextQuestion();
+                SequenceManager.Instance.NextQuestion(_target.AnswerId);
 
                 //Invoke("Reload", 3f);
             }

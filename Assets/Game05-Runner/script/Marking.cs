@@ -71,7 +71,7 @@ public class Marking : MonoBehaviour
 
         targetObj.gameObject.SetActive(false);
 
-        SequenceManager.Instance.NextQuestion();
+        SequenceManager.Instance.NextQuestion(targetObj.AnswerId);
     }
     
     private IEnumerator ShowResult(bool isTrue)

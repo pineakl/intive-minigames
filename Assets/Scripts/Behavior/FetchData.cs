@@ -16,7 +16,7 @@ public class FetchData : MonoBehaviour
     {
         _letters = new string[]{"A","B","C","D"};
 
-        Invoke("Reload", 0.5f);
+        //Invoke("Reload", 5f);
     }
 
     private void Reload()
@@ -41,6 +41,7 @@ public class FetchData : MonoBehaviour
             {
                 if (picked[i].GetComponent<Animator>()) picked[i].GetComponent<Animator>().CrossFade("standing", 0);
                 picked[i].SetText(_letters[i], questionObj.answers[i].answer);
+                picked[i].AnswerId = questionObj.answers[i].id;
                 if (questionObj.answer_correct.id == questionObj.answers[i].id) picked[i].isTrue = true;
                 if (_answerUI.Length >= picked.Count)
                 {

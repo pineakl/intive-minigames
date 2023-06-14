@@ -19,6 +19,7 @@ public class TargetObject : MonoBehaviour
     [SerializeField] private Color _noTextColor = Color.white;
 
     [HideInInspector] public bool isTrue;
+    [HideInInspector] public int AnswerId;
 
     public void SetText(string letter, string text)
     {

@@ -50,14 +50,16 @@ public class SequenceManager : MonoBehaviour
     {
         //_questions = JsonUtility.FromJson<Structures.Question>(_questionJSON.text);
 
-        StartCoroutine(fetchQuestion());
+        StartCoroutine(FetchQuestion());
     }
 
-    private IEnumerator fetchQuestion()
+    private IEnumerator FetchQuestion()
     {
         WWWForm form = new();
         form.AddField("sub_master_value_id", 2);
         form.AddField("ticket", "996D73D8");
+
+        Debug.Log("Connecting to " + _server + "/api/game-question");
 
         using (UnityWebRequest webRequest = UnityWebRequest.Post(_server + "/api/game-question", form))
         {
@@ -74,6 +76,36 @@ public class SequenceManager : MonoBehaviour
                     break;
                 case UnityWebRequest.Result.Success:
                     _questions = JsonUtility.FromJson<Structures.Question>(webRequest.downloadHandler.text);
+                    break;
+            }
+
+            webRequest.Dispose();
+        }
+    }
+
+    private IEnumerator SubmitAnswer(int questionId, int answerId)
+    {
+        WWWForm form = new();
+        form.AddField("ticket", "996D73D8");
+        form.AddField("game_question_id", questionId);
+        form.AddField("answer_id", answerId);
+
+        Debug.Log("Connecting to " + _server + "/api/game-question/push-answer");
+
+        using (UnityWebRequest webRequest = UnityWebRequest.Post(_server + "/api/game-question", form))
+        {
+            yield return webRequest.SendWebRequest();
+
+            switch (webRequest.result)
+            {
+                case UnityWebRequest.Result.ConnectionError:
+                case UnityWebRequest.Result.DataProcessingError:
+                    Debug.LogError("Error: " + webRequest.error);
+                    break;
+                case UnityWebRequest.Result.ProtocolError:
+                    Debug.LogError("HTTP Error: " + webRequest.error);
+                    break;
+                case UnityWebRequest.Result.Success:
                     Debug.Log(webRequest.downloadHandler.text);
                     break;
             }
@@ -87,8 +119,11 @@ public class SequenceManager : MonoBehaviour
         return _questions.data[_currentQuestionId];
     }
 
-    public void NextQuestion()
+    public void NextQuestion(int answerId)
     {
+        //  Submit Answer
+        StartCoroutine(SubmitAnswer(_currentQuestionId, answerId));
+
         _currentQuestionId++;
         if (_currentQuestionId < _questions.data.Length)
         {
