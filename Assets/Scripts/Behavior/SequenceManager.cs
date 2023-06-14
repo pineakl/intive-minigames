@@ -83,16 +83,17 @@ public class SequenceManager : MonoBehaviour
         }
     }
 
-    private IEnumerator SubmitAnswer(int questionId, int answerId)
+    private IEnumerator SubmitAnswer(int questionNumber, int answerId)
     {
         WWWForm form = new();
         form.AddField("ticket", "996D73D8");
-        form.AddField("game_question_id", questionId);
+        form.AddField("game_question_id", _questions.data[questionNumber].id);
         form.AddField("answer_id", answerId);
 
+        Debug.Log(questionNumber + " " + answerId);
         Debug.Log("Connecting to " + _server + "/api/game-question/push-answer");
 
-        using (UnityWebRequest webRequest = UnityWebRequest.Post(_server + "/api/game-question", form))
+        using (UnityWebRequest webRequest = UnityWebRequest.Post(_server + "/api/game-question/push-answer", form))
         {
             yield return webRequest.SendWebRequest();
 
