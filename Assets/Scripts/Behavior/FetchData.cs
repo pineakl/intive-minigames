@@ -16,7 +16,7 @@ public class FetchData : MonoBehaviour
     {
         _letters = new string[]{"A","B","C","D"};
 
-        //Invoke("Reload", 5f);
+        Invoke("Reload", 0.1f);
     }
 
     private void Reload()
